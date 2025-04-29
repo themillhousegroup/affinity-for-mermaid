@@ -1,9 +1,9 @@
 # Affinity symbol set (for Mermaid.js)
 Free 2D symbols for computer network diagrams. 
 
-This fork simply takes the excellent work of [ecceman](https://github.com/ecceman/affinity) and exposes the Affinity networking icon set for consumption via Mermaid.js.
+This fork simply takes the excellent work of [ecceman](https://github.com/ecceman/affinity) and exposes the *Affinity* networking icon set for consumption via Mermaid.js.
 
-To do this, just follow the [Registering icon pack in Mermaid](https://mermaid.js.org/config/icons.html#registering-icon-pack-in-mermaid) guide, substituting the Github Pages endpoint from this project; i.e.:
+To do this, just follow the [Registering icon pack in Mermaid](https://mermaid.js.org/config/icons.html#registering-icon-pack-in-mermaid) guide, substituting the [Github Pages resource files](https://themillhousegroup.github.io/affinity-for-mermaid/) from this project; i.e.:
 
 ```javascript
 mermaid.registerIconPacks([
@@ -27,15 +27,41 @@ architecture-beta
 
 The above example uses the [architecture (beta)](https://mermaid.js.org/syntax/architecture.html#groups) syntax.
 
-
-### How it works
-See the `createIconSet.js` script. 
-Using the excellent [Iconify Tools](https://iconify.design/docs/libraries/tools/import/directory.html) we simply iterate over the directories under the `svg` directory, placing the icons we find into appropriate collections, with prefixes as follows:
+### Icon file resources
+Beneath the [Github Pages top level](https://themillhousegroup.github.io/affinity-for-mermaid/) are currently 3 separate icon sets, corresponding to the `naked`, `square` and `circle` subdirectories beneath `svg` in the repo, with prefixes as follows:
 ```
 svg/naked: => icons.json with no prefix
 svg/square => square.json with prefix square-
 svg/circle => circle.json with prefix circle-
 ```
+
+### Full worked example
+If you wanted to use the circular [c_coffee_blue](svg/circle/blue/c_coffee_blue.svg) image in your own Mermaid network diagram:
+
+* Import the circle icon set:
+
+```
+mermaid.registerIconPacks([
+  {
+    name: 'affinity-circle',
+    loader: () =>
+      fetch('https://themillhousegroup.github.io/affinity-for-mermaid/circle.json').then((res) => res.json()),
+  },
+]);
+```
+
+* Use it (note underscores get changed to dashes!):
+
+```
+architecture-beta
+    service coffee-machine(affinity-circle:c-coffee-blue[Yum] 
+
+```  
+
+
+### How it works
+See the `createIconSet.js` script. 
+Using the excellent [Iconify Tools](https://iconify.design/docs/libraries/tools/import/directory.html) we simply iterate over the directories under the `svg` directory, placing the icons we find into appropriate collections
 
 ### Run it yourself
 
