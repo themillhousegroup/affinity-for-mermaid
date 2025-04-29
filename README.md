@@ -1,4 +1,4 @@
-# Affinity symbol set
+# Affinity symbol set (for Mermaid.js)
 Free 2D symbols for computer network diagrams. 
 
 This fork simply takes the excellent work of [ecceman](https://github.com/ecceman/affinity) and exposes the Affinity networking icon set for consumption via Mermaid.js.
