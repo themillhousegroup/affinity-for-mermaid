@@ -19,13 +19,15 @@
 
         const iconListElement = document.getElementById("icon-list");
         const allIconNames = Object.keys(iconSet.icons);
-        console.log(`allIconNames: ${JSON.stringify(allIconNames, null, 2)}`);
         const services = allIconNames.map((iconName) => {
-            const dashRemoved = iconName.replace('-', ' ');
-            return `service ${iconName}(affinity:${iconName})[${dashRemoved}]`;
+            const dashReplaced = iconName.replace('-', ' ');
+            const dashRemoved = iconName.replace('-', '');
+            return `service ${dashRemoved}(affinity:${iconName})[${dashReplaced}]`;
         });
 
-        iconListElement.textContent = iconListElement.innerText + '\n' + services.join('\n') + '\n\n';
+        const newInner = iconListElement.innerText + '\n' + services.join('\n') + '\n\n';
+        console.log(`newInner: '${newInner}'`);
+        iconListElement.textContent = newInner;
 
         // Bring in the naked icon set
         mermaid.registerIconPacks([
