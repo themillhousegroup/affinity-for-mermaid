@@ -17,9 +17,10 @@
         
         const iconSet = await fetch('https://themillhousegroup.github.io/affinity-for-mermaid/icons.json').then((res) => res.json());
 
-        const iconList = document.getElementById("icon-list");
+        const iconListElement = document.getElementById("icon-list");
         Object.keys(iconSet.icons).forEach((iconName) => {
-            iconList.textContent = iconList.textContent + `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
+            console.log(`found '${iconName}'`);
+            //iconListElement.textContent = iconList.textContent + `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
         });
 
         // Bring in the naked icon set
