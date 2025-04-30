@@ -68,12 +68,17 @@
         architecture-beta
             group api(affcircle:c-house)[API]
         
-            service server(affcircle:c-server)[Server] in api
+            service switch(affsquare:c-switch-multilayer-red) in api
+
+
+            service server(affcircle:c-server-red)[Server] in api
             service disk1(affcircle:c-storage)[Storage] in api
-            service printer(affcircle:c-printer)[Printer] in api
+            service printer(affcircle:c-printer-blue)[Printer] in api
+
+            switch:B -- T:server
 
             server:B --> T:printer
-            server:L <--> T:disk1
+            server:R -- L:disk1
     </pre>
     <hr />
 
@@ -81,13 +86,20 @@
     <pre class="mermaid">
         architecture-beta
             group api(affsquare:sq-house)[API]
+
+            service switch(affsquare:sq-switch-multilayer-blue) in api
+
         
-            service printer(affsquare:sq-printer)[Printer] in api
-            service disk1(affsquare:sq-storage)[Storage] in api
+            service printer(affsquare:sq-printer-red)[Printer] in api
+            service disk1(affsquare:sq-storage-green)[Storage] in api
             service server(affsquare:sq-server)[Server] in api
 
+
+
+            switch:B -- T:server
+
             server:B --> T:printer
-            server:L <--> T:disk1
+            server:R -- L:disk1
     </pre>
     <hr />
 
