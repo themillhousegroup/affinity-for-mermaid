@@ -23,7 +23,7 @@
         allIconNames.forEach((iconName) => {
             const serviceLine = `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
             console.log(`found '${iconName}' -> ${serviceLine}`);
-            iconListElement.textContent = iconListElement.textContent + serviceLine;
+            iconListElement.innerText = iconListElement.innerText + serviceLine;
         });
 
         // Bring in the naked icon set
