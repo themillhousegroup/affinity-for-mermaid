@@ -9,9 +9,9 @@ import {
 
 // Define naming conventions for input, prefixing and output
 const iconSetDefinitions = [
-	{ path: 'svg/naked', options: {}, outputFile: 'icons.json' },
-	{ path: 'svg/square', options:  { prefix: 'square-'}, outputFile: 'square.json'},
-	{ path: 'svg/circle', options:  { prefix: 'circle-'}, outputFile: 'circle.json'},
+	{ path: 'svg/naked', options: { replaceColors: true }, outputFile: 'icons.json' },
+	{ path: 'svg/square', options:  { prefix: 'square', replaceColors: false }, outputFile: 'square.json'},
+	{ path: 'svg/circle', options:  { prefix: 'circle', replaceColors: false }, outputFile: 'circle.json'},
 ];
 
 
@@ -38,16 +38,17 @@ iconSetDefinitions.forEach((iconSetDef) => {
 		// Clean up icon code
 		cleanupSVG(svg);
 
-		// Assume icon is monotone: replace color with currentColor, add if missing
-		// If icon is not monotone, remove this code
-		parseColors(svg, {
-		    defaultColor: 'currentColor',
-		    callback: (attr, colorStr, color) => {
-			return !color || isEmptyColor(color)
-			    ? colorStr
-			    : 'currentColor';
-		    },
-		});
+		if (iconSetDef.options.replaceColors) {
+			// Assume icon is monotone: replace color with currentColor, add if missing
+			parseColors(svg, {
+			    defaultColor: 'currentColor',
+			    callback: (attr, colorStr, color) => {
+				return !color || isEmptyColor(color)
+				    ? colorStr
+				    : 'currentColor';
+			    },
+			});
+		}
 
 		// Optimise
 		runSVGO(svg);
