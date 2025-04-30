@@ -21,7 +21,8 @@
         const allIconNames = Object.keys(iconSet.icons);
         console.log(`allIconNames: ${JSON.stringify(allIconNames, null, 2)}`);
         allIconNames.forEach((iconName) => {
-            const serviceLine = `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
+            const dashRemoved = iconName.replace('-', ' ');
+            const serviceLine = `service ${iconName}(affinity:${iconName})[${dashRemoved}]\n`;
             console.log(`found '${iconName}' -> ${serviceLine}`);
             iconListElement.innerText = iconListElement.innerText + serviceLine;
         });
@@ -52,11 +53,9 @@
   <body>
 
     <h3>Affinity-for-mermaid; available icons</h3>
-
+    <p>Note that due to a bug in Mermaid's <b>architecture-beta</b> syntax, we currently can't display dashes in icon titles. We've replaced them with spaces</p>
     <pre id="icon-list" class="mermaid">
         architecture-beta
-        
-            service printer(affinity:printer)[Printer]
 
     </pre>
     <hr />

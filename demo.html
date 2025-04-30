@@ -51,14 +51,16 @@
         
             service switch(affinity:switch-multilayer) in api
 
+            service server(affinity:server)[Server] in api
+
             service printer(affinity:printer)[Printer] in api
             service disk1(affinity:storage)[Storage] in api
-            service server(affinity:server)[Server] in api
+
 
             switch:B -- T:server
 
             server:B --> T:printer
-            server:L -- T:disk1
+            server:R -- T:disk1
     </pre>
     <hr />
     <h3>Network graph using "circle" icon set (aka "affinity-circle")</h3>
