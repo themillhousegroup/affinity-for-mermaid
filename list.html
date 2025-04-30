@@ -11,7 +11,7 @@
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
         // We do things a little differently to "normal" usage here as we need to alter the DOM
-        // to include all the icons, BEFORE we let Mermaid see it.
+        // to include a reference to each of the icons, BEFORE we let Mermaid see it.
         // See https://mermaid.js.org/config/usage.html#using-mermaid-run
         mermaid.initialize({startOnLoad: false})
         
@@ -21,7 +21,7 @@
         Object.keys(iconSet.icons).forEach((iconName) => {
             const serviceLine = `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
             console.log(`found '${iconName}' -> ${serviceLine}`);
-            iconListElement.textContent = iconList.textContent + serviceLine;
+            iconListElement.textContent = iconListElement.textContent + serviceLine;
         });
 
         // Bring in the naked icon set
@@ -48,6 +48,10 @@
 
     </pre>
     <hr />
+    Note that the <tt>circle</tt> icons are all prefixed with <tt>c-</tt> and 
+    the <tt>square</tt> icons are all prefixed with <tt>sq-</tt>.
+
+    The circle and square icons can all also optionally be suffixed with <tt>-red</tt>, <tt>-green</tt> or <tt>-blue</tt>.
 
     <p>Back to <a href="https://github.com/themillhousegroup/affinity-for-mermaid">affinity-for-mermaid</a></p>
 

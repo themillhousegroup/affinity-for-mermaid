@@ -18,12 +18,12 @@
             fetch('https://themillhousegroup.github.io/affinity-for-mermaid/icons.json').then((res) => res.json()),
         },
         {
-            name: 'affinity-square',
+            name: 'affsquare',
             loader: () =>
             fetch('https://themillhousegroup.github.io/affinity-for-mermaid/square.json').then((res) => res.json()),
         },
         {
-            name: 'affinity-circle',
+            name: 'affcircle',
             loader: () =>
             fetch('https://themillhousegroup.github.io/affinity-for-mermaid/circle.json').then((res) => res.json()),
         },
@@ -51,35 +51,37 @@
         
             service printer(affinity:printer)[Printer] in api
             service disk1(affinity:storage)[Storage] in api
-            service disk2(affinity:storage)[Storage] in api
             service server(affinity:server)[Server] in api
+
+            server:B --> T:printer
+            server:L <--> T:disk1
     </pre>
     <hr />
     <h3>Network graph using "circle" icon set (aka "affinity-circle")</h3>
     <pre class="mermaid">
         architecture-beta
-            group api(affinity-circle:c-house)[API]
+            group api(affcircle:c-house)[API]
         
-            service server(affinity-circle:c-server)[Server] in api
-            service disk1(affinity-circle:c-storage)[Storage] in api
-            service printer(affinity-circle:c-printer)[Printer] in api
-            service disk2(affinity-circle:c-storage)[Storage] in api
+            service server(affcircle:c-server)[Server] in api
+            service disk1(affcircle:c-storage)[Storage] in api
+            service printer(affcircle:c-printer)[Printer] in api
 
             server:B --> T:printer
             server:L <--> T:disk1
-            server:R <--> T:disk2
     </pre>
     <hr />
 
     <h3>Network graph using "square" icon set (aka "affinity-square")</h3>
     <pre class="mermaid">
         architecture-beta
-            group api(affinity-square:sq-house)[API]
+            group api(affsquare:sq-house)[API]
         
-            service printer(affinity-square:sq-printer)[Printer] in api
-            service disk1(affinity-square:sq-storage)[Storage] in api
-            service disk2(affinity-square:sq-storage)[Storage] in api
-            service server(affinity-square:sq-server)[Server] in api
+            service printer(affsquare:sq-printer)[Printer] in api
+            service disk1(affsquare:sq-storage)[Storage] in api
+            service server(affsquare:sq-server)[Server] in api
+
+            server:B --> T:printer
+            server:L <--> T:disk1
     </pre>
     <hr />
 
