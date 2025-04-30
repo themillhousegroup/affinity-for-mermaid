@@ -18,7 +18,9 @@
         const iconSet = await fetch('https://themillhousegroup.github.io/affinity-for-mermaid/icons.json').then((res) => res.json());
 
         const iconListElement = document.getElementById("icon-list");
-        Object.keys(iconSet.icons).forEach((iconName) => {
+        const allIconNames = Object.keys(iconSet.icons);
+        console.log(`allIconNames: ${JSON.stringify(allIconNames, null, 2)}`);
+        allIconNames.forEach((iconName) => {
             const serviceLine = `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
             console.log(`found '${iconName}' -> ${serviceLine}`);
             iconListElement.textContent = iconListElement.textContent + serviceLine;
@@ -29,6 +31,16 @@
         {
             name: 'affinity',
             loader: () => iconSet,
+        },
+        {
+            name: 'affsquare',
+            loader: () =>
+            fetch('https://themillhousegroup.github.io/affinity-for-mermaid/square.json').then((res) => res.json()),
+        },
+        {
+            name: 'affcircle',
+            loader: () =>
+            fetch('https://themillhousegroup.github.io/affinity-for-mermaid/circle.json').then((res) => res.json()),
         },
         ]);
 
@@ -48,11 +60,24 @@
 
     </pre>
     <hr />
-    Note that the <tt>circle</tt> icons are all prefixed with <tt>c-</tt> and 
-    the <tt>square</tt> icons are all prefixed with <tt>sq-</tt>.
-
-    The circle and square icons can all also optionally be suffixed with <tt>-red</tt>, <tt>-green</tt> or <tt>-blue</tt>.
-
+    <h4>Notes</h4>
+    <p>The <tt>circle</tt> icons are all prefixed with <tt>c-</tt></p> 
+    <p>The <tt>square</tt> icons are all prefixed with <tt>sq-</tt></p>
+    <p>The circle and square icons can all also optionally be suffixed with <tt>-red</tt>, <tt>-green</tt> or <tt>-blue</tt>.</p>
+    <h4>Examples:</h4>
+    <tt>c-router-cloud-green</tt>:
+    <pre class="mermaid">
+        architecture-beta
+        
+        service router(affcircle:c-router-cloud-green)[Router]</pre>
+    </pre>
+    <tt>sq-camera-red</tt>:
+    <pre class="mermaid">
+        architecture-beta
+        
+        service router(affsquare:sq-camera-red)[Camera]</pre>
+    </pre>
+    <hr />
     <p>Back to <a href="https://github.com/themillhousegroup/affinity-for-mermaid">affinity-for-mermaid</a></p>
 
   </body>
