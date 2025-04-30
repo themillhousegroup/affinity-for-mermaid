@@ -20,7 +20,7 @@
         const iconListElement = document.getElementById("icon-list");
         const allIconNames = Object.keys(iconSet.icons);
         console.log(`allIconNames: ${JSON.stringify(allIconNames, null, 2)}`);
-        const services = allIconNames.forEach((iconName) => {
+        const services = allIconNames.map((iconName) => {
             const dashRemoved = iconName.replace('-', ' ');
             return `service ${iconName}(affinity:${iconName})[${dashRemoved}]`;
         });
