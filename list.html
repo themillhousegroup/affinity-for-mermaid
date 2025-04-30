@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Affinity for Mermaid Icon List Page</title>
+	<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css' rel='stylesheet'/>
+
+    <script type="module">
+        // Configure mermaid
+        // https://mermaid.js.org/config/usage.html
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+        // We do things a little differently to "normal" usage here as we need to alter the DOM
+        // to include all the icons, BEFORE we let Mermaid see it.
+        // See https://mermaid.js.org/config/usage.html#using-mermaid-run
+        mermaid.initialize({startOnLoad: false})
+        
+        const iconSet = await fetch('https://themillhousegroup.github.io/affinity-for-mermaid/icons.json').then((res) => res.json());
+
+        const iconList = document.getElementById("icon-list");
+        Object.keys(iconSet.icons).forEach((iconName) => {
+            iconList.textContent = iconList.textContent + `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
+        });
+
+        // Bring in the naked icon set
+        mermaid.registerIconPacks([
+        {
+            name: 'affinity',
+            loader: () => iconSet,
+        },
+        ]);
+
+        // Now we can let mermaid process the page:
+        await mermaid.run();
+
+    </script>
+  </head>
+  <body>
+
+    <h3>Affinity-for-mermaid; available icons</h3>
+
+    <pre id="icon-list" class="mermaid">
+        architecture-beta
+        
+            service printer(affinity:printer)[Printer]
+
+    </pre>
+    <hr />
+
+    <p>Back to <a href="https://github.com/themillhousegroup/affinity-for-mermaid">affinity-for-mermaid</a></p>
+
+  </body>
+</html>
+
+

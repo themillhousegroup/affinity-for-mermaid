@@ -27,8 +27,10 @@ architecture-beta
 
 The above example uses the [architecture (beta)](https://mermaid.js.org/syntax/architecture.html#groups) syntax.
 
-### Demonstration Page
-A demonstration page [here](https://themillhousegroup.github.io/affinity-for-mermaid/demo.html) shows this library in use.
+### Demonstration Pages
+If you just want to know what icons are available, and by what name, the [Icon List Page](https://themillhousegroup.github.io/affinity-for-mermaid/list.html) is for you.
+
+The [Demonstration Page](https://themillhousegroup.github.io/affinity-for-mermaid/demo.html) shows this library in use.
 
 ### Icon file resources
 Beneath the [Github Pages top level](https://themillhousegroup.github.io/affinity-for-mermaid/) are currently 3 separate icon sets, corresponding to the `naked`, `square` and `circle` subdirectories beneath `svg` in the repo, with prefixes as follows:
