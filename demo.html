@@ -58,12 +58,12 @@
     <h3>Network graph using "circle" icon set (aka "affinity-circle")</h3>
     <pre class="mermaid">
         architecture-beta
-            group api(affinity-circle:house)[API]
+            group api(affinity-circle:c-house)[API]
         
-            service printer(affinity-circle:printer)[Printer] in api
-            service disk1(affinity-circle:storage)[Storage] in api
-            service disk2(affinity-circle:storage)[Storage] in api
-            service server(affinity-circle:server)[Server] in api
+            service server(affinity-circle:c-server)[Server] in api
+            service disk1(affinity-circle:c-storage)[Storage] in api
+            service printer(affinity-circle:c-printer)[Printer] in api
+            service disk2(affinity-circle:c-storage)[Storage] in api
 
             server:B --> T:printer
             server:L <--> T:disk1
@@ -74,12 +74,12 @@
     <h3>Network graph using "square" icon set (aka "affinity-square")</h3>
     <pre class="mermaid">
         architecture-beta
-            group api(affinity-square:house)[API]
+            group api(affinity-square:sq-house)[API]
         
-            service printer(affinity-square:printer)[Printer] in api
-            service disk1(affinity-square:storage)[Storage] in api
-            service disk2(affinity-square:storage)[Storage] in api
-            service server(affinity-square:server)[Server] in api
+            service printer(affinity-square:sq-printer)[Printer] in api
+            service disk1(affinity-square:sq-storage)[Storage] in api
+            service disk2(affinity-square:sq-storage)[Storage] in api
+            service server(affinity-square:sq-server)[Server] in api
     </pre>
     <hr />
 

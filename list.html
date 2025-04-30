@@ -19,8 +19,9 @@
 
         const iconListElement = document.getElementById("icon-list");
         Object.keys(iconSet.icons).forEach((iconName) => {
-            console.log(`found '${iconName}'`);
-            //iconListElement.textContent = iconList.textContent + `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
+            const serviceLine = `service ${iconName}(affinity:${iconName})[affinity:${iconName}]\n`;
+            console.log(`found '${iconName}' -> ${serviceLine}`);
+            iconListElement.textContent = iconList.textContent + serviceLine;
         });
 
         // Bring in the naked icon set
