@@ -20,12 +20,12 @@
         const iconListElement = document.getElementById("icon-list");
         const allIconNames = Object.keys(iconSet.icons);
         console.log(`allIconNames: ${JSON.stringify(allIconNames, null, 2)}`);
-        allIconNames.forEach((iconName) => {
+        const services = allIconNames.forEach((iconName) => {
             const dashRemoved = iconName.replace('-', ' ');
-            const serviceLine = `service ${iconName}(affinity:${iconName})[${dashRemoved}]\n`;
-            console.log(`found '${iconName}' -> ${serviceLine}`);
-            iconListElement.innerText = iconListElement.innerText + serviceLine;
+            return `service ${iconName}(affinity:${iconName})[${dashRemoved}]`;
         });
+
+        iconListElement.textContent = iconListElement.innerText + '\n' + services.join('\n') + '\n\n';
 
         // Bring in the naked icon set
         mermaid.registerIconPacks([
@@ -56,7 +56,6 @@
     <p>Note that due to a bug in Mermaid's <b>architecture-beta</b> syntax, we currently can't display dashes in icon titles. We've replaced them with spaces</p>
     <pre id="icon-list" class="mermaid">
         architecture-beta
-
     </pre>
     <hr />
     <h4>Notes</h4>
