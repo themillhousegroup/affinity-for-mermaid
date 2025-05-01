@@ -43,7 +43,7 @@ svg/circle => circle.json with prefix circle-
 ### Full worked example
 If you wanted to use the circular [c_coffee_blue](svg/circle/blue/c_coffee_blue.svg) image in your own Mermaid network diagram:
 
-* Import the circle icon set:
+* Import the circle icon set (you can use any `prefix` you like):
 
 ```
 mermaid.registerIconPacks([
@@ -55,7 +55,7 @@ mermaid.registerIconPacks([
 ]);
 ```
 
-* Use it (note underscores get changed to dashes!):
+* Use an icon from the set, via the prefix you chose in the previous step:
 
 ```
 architecture-beta
