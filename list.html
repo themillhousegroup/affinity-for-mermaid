@@ -10,6 +10,15 @@
         }
     </style>
     <script type="module">
+
+        function chunkArray(array, size) {
+          const chunked = [];
+          for (let i = 0; i < array.length; i += size) {
+            chunked.push(array.slice(i, i + size));
+          }
+          return chunked;
+        }
+
         // Configure mermaid
         // https://mermaid.js.org/config/usage.html
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12/dist/mermaid.esm.min.mjs';
@@ -23,13 +32,22 @@
 
         const iconListElement = document.getElementById("icon-list");
         const allIconNames = Object.keys(iconSet.icons);
-        const services = allIconNames.map((iconName) => {
-            const dashReplaced = iconName.replace('-', ' ');
-            const dashRemoved = iconName.replace('-', '');
-            return `service ${dashRemoved}(affinity:${iconName})[${dashReplaced}]`;
+        const alphabeticalIconNames = allIconNames.sort((a, b) => a.localeCompare(b));
+        const chunked = chunkArray(alphabeticalIconNames, 11);
+        const chunks = chunked.map((chunk, chunkNumber) => {
+          const variations = chunk.map((iconName) => {
+              const dashReplaced = iconName.replace('-', ' ');
+              const dashRemoved = iconName.replace('-', '');
+              const service = `service ${dashRemoved}(affinity:${iconName})[${dashReplaced}] in chunk${chunkNumber}`;
+              return {
+                service,
+                dashRemoved,
+              };
+          });
+          return `group chunk${chunkNumber}\n\n` + variations.map((v) => v.service).join('\n') + '\n' + `align row ${variations.map((v) => v.dashRemoved).join(' ')}` + '\n\n';
         });
 
-        const newInner = iconListElement.innerText + '\n' + services.join('\n') + '\n\n';
+        const newInner = iconListElement.innerText + '\n' + chunks.reverse().join('\n') + '\n\n';
         console.log(`newInner: '${newInner}'`);
         iconListElement.textContent = newInner;
 
@@ -60,7 +78,7 @@
 
     <h3>Affinity-for-mermaid; available icons</h3>
     <p>
-        Note that due to <a href="https://github.com/mermaid-js/mermaid/issues/5928" target="_blank">
+        Note that due to a <a href="https://github.com/mermaid-js/mermaid/issues/5928" target="_blank">
         bug in Mermaid's <b>architecture-beta</b> syntax</a>, 
         we currently can't display dashes in icon titles. We've replaced them with spaces
     </p>
